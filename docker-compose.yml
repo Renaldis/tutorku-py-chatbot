@@ -1,0 +1,13 @@
+services:
+  chatbot_tutorku:
+    build: .
+    container_name: tutorku_chatbot_app
+    restart: always # Otomatis nyala kalau server restart
+    ports:
+      - "8000:8000" # Kiri: Port di aaPanel (host), Kanan: Port di dalam container
+    environment:
+      - TZ=Asia/Jakarta # Set zona waktu
+      # Tambahkan variabel environment lain di sini kalau ada (misal API_KEY)
+    volumes:
+      # Kalau kamu punya folder khusus untuk menyimpan log atau database SQLite lokal
+      - ./data:/app/data

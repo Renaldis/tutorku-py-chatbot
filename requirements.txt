@@ -8,3 +8,4 @@ pydantic==2.12.5
 python-dotenv==1.2.2
 qdrant_client==1.17.1
 Requests==2.32.5
+uvicorn==0.23.2
