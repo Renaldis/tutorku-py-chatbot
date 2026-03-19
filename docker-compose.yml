@@ -1,5 +1,5 @@
 services:
-  chatbot_tutorku:
+  tutorku-py-chatbot:
     build: .
     container_name: tutorku_chatbot_app
     restart: always # Otomatis nyala kalau server restart
