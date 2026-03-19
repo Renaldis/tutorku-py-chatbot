@@ -14,15 +14,15 @@ jobs:
 
       - name: Sinkronisasi kode ke folder server
         run: |
-          rsync -av --delete --exclude='.env' ./ /www/wwwroot/chatbot-tutorku/
+          rsync -av --delete --exclude='.env' ./ /www/wwwroot/tutorku-py-chatbot/
 
       - name: Create or Update .env file
         run: |
-          echo "${{ secrets.ENV_CONTENT }}" > /www/wwwroot/chatbot-tutorku/.env
+          echo "${{ secrets.ENV_CONTENT }}" > /www/wwwroot/tutorku-py-chatbot/.env
 
       - name: Build dan Jalankan Docker
         run: |
-          cd /www/wwwroot/chatbot-tutorku/
+          cd /www/wwwroot/tutorku-py-chatbot/
           docker compose up -d --build
 
       - name: Cleanup Sampah Docker
