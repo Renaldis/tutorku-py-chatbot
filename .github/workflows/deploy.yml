@@ -2,7 +2,7 @@ name: Deploy Chatbot TutorKu
 
 on:
   push:
-    branches: [main] # Pastikan nama branch di lokalmu benar 'main'
+    branches: [main]
 
 jobs:
   deploy:
@@ -14,12 +14,18 @@ jobs:
 
       - name: Sinkronisasi kode ke folder server
         run: |
-          # rsync lebih pintar dari cp. Dia akan menimpa yang baru dan menghapus yang sudah tidak ada
-          # --exclude='.env' memastikan kalau kamu punya file .env di server, dia tidak ikut terhapus
           rsync -av --delete --exclude='.env' ./ /www/wwwroot/chatbot-tutorku/
+
+      - name: Create or Update .env file
+        run: |
+          echo "${{ secrets.ENV_CONTENT }}" > /www/wwwroot/chatbot-tutorku/.env
 
       - name: Build dan Jalankan Docker
         run: |
           cd /www/wwwroot/chatbot-tutorku/
-          # Perintah sakti untuk update dan nyalakan ulang container
           docker compose up -d --build
+
+      - name: Cleanup Sampah Docker
+        run: |
+          # Menghapus image bekas build lama yang sudah tidak dipakai (dangling)
+          docker image prune -f
