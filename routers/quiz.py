@@ -81,17 +81,20 @@ async def generate_quiz(request: QuizRequest):
 
         type_map = {
             "multiple_choice": {
-                "desc": "PILIHAN GANDA",
+                "desc": "PILIHAN GANDA (4 Opsi Konseptual, BUKAN Benar/Salah)",
                 "format": f"""
 [
   {{
     "question": "...",
     "options": {{"A":"...","B":"...","C":"...","D":"..."}},
-    "correct_answer": "A",
+    "correct_answer": "A, B, C, atau D (Pastikan kunci jawaban diacak dan tidak selalu A)",
     "explanation": "...",
     "difficulty": "{request.difficulty}"
   }}
 ]
+ATURAN PILIHAN GANDA:
+- Opsi jawaban (A, B, C, D) harus berupa frasa/konsep yang spesifik.
+- DILARANG menggunakan opsi "Benar" / "Salah" atau "Semua jawaban benar".
 """
             },
             "true_false": {
@@ -101,7 +104,7 @@ async def generate_quiz(request: QuizRequest):
   {{
     "question": "...",
     "options": {{"A":"Benar","B":"Salah"}},
-    "correct_answer": "A",
+    "correct_answer": "A atau B (Pastikan jawaban benar/salah diacak dan seimbang)",
     "explanation": "...",
     "difficulty": "{request.difficulty}"
   }}
@@ -184,6 +187,8 @@ ATURAN KETAT:
 - TANPA penjelasan tambahan
 - Jumlah soal = {count}
 - Ikuti format EXACT
+- Untuk soal PILIHAN GANDA: DILARANG KERAS membuat pertanyaan bertipe Benar/Salah. Setiap soal HARUS memiliki 4 opsi jawaban substantif (A, B, C, D). Pastikan kunci jawaban terdistribusi secara acak (bisa A, B, C, atau D), JANGAN SELALU A.
+- Untuk soal BENAR/SALAH: pastikan kunci jawaban (correct_answer) terdistribusi secara acak dan seimbang (A atau B).
 
 TIPE: {type_desc}
 KESULITAN: {difficulty_desc}
