@@ -187,8 +187,8 @@ ATURAN KETAT:
 - TANPA penjelasan tambahan
 - Jumlah soal = {count}
 - Ikuti format EXACT
-- Untuk soal PILIHAN GANDA: DILARANG KERAS membuat pertanyaan bertipe Benar/Salah. Setiap soal HARUS memiliki 4 opsi jawaban substantif (A, B, C, D). Pastikan kunci jawaban terdistribusi secara acak (bisa A, B, C, atau D), JANGAN SELALU A.
-- Untuk soal BENAR/SALAH: pastikan kunci jawaban (correct_answer) terdistribusi secara acak dan seimbang (A atau B).
+- Untuk soal PILIHAN GANDA: DILARANG KERAS membuat pertanyaan bertipe Benar/Salah. Setiap soal HARUS memiliki 4 opsi jawaban substantif (A, B, C, D). Pastikan kunci jawaban terdistribusi secara acak (bisa A, B, C, atau D), JANGAN SELALU BUAT OPSI JAWABAN SAMA SECARA BERTURUTAN.
+- Untuk soal BENAR/SALAH: pastikan kunci jawaban (correct_answer) terdistribusi secara acak dan seimbang (A atau B), JANGAN SELALU BUAT OPSI JAWABAN SAMA SECARA BERTURUTAN.
 
 TIPE: {type_desc}
 KESULITAN: {difficulty_desc}
