@@ -2,6 +2,7 @@ import os
 import base64
 import tempfile
 import requests
+import traceback
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
@@ -15,6 +16,8 @@ from langchain_community.document_loaders import PyPDFLoader
 load_dotenv()
 
 router = APIRouter()
+
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY") or None
 
 # ==============================
 # 1. REQUEST SCHEMA
@@ -84,7 +87,7 @@ async def ingest_pdf(request: PDFIngestRequest):
             documents=split_docs,
             embedding=embeddings,
             url=os.getenv("QDRANT_URL"),
-            api_key=os.getenv("QDRANT_API_KEY"),
+            api_key=QDRANT_API_KEY,
             collection_name="tutorku_materials"
         )
 
@@ -120,4 +123,5 @@ async def ingest_pdf(request: PDFIngestRequest):
         }
 
     except Exception as e:
+        traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))

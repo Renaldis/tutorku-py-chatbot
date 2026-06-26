@@ -18,6 +18,7 @@ load_dotenv()
 router = APIRouter()
 
 OPENAI_BASE_URL = os.getenv("OPENAI_BASE_URL")
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY") or None
 
 # ==============================
 # REQUEST
@@ -72,7 +73,7 @@ async def evaluate_essay(request: EssayRequest):
         # ==============================
         client = QdrantClient(
             url=os.getenv("QDRANT_URL"),
-            api_key=os.getenv("QDRANT_API_KEY")
+            api_key=QDRANT_API_KEY
         )
 
         embeddings = OpenAIEmbeddings(

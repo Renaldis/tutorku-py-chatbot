@@ -15,6 +15,7 @@ load_dotenv()
 router = APIRouter()
 
 OPENAI_BASE_URL = os.getenv("OPENAI_BASE_URL", "https://ai.sumopod.com/v1")
+QDRANT_API_KEY = os.getenv("QDRANT_API_KEY") or None
 
 
 class ChatRequest(BaseModel):
@@ -53,7 +54,7 @@ async def rag_chat(request: ChatRequest):
             embedding=embeddings,
             collection_name="tutorku_materials",
             url=os.getenv("QDRANT_URL"),
-            api_key=os.getenv("QDRANT_API_KEY")
+            api_key=QDRANT_API_KEY
         )
 
         # ==============================
