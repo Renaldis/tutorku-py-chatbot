@@ -307,6 +307,32 @@ Response
 
 ---
 
+# 🧪 Menjalankan Pengujian
+
+Pengujian layanan AI/RAG menggunakan `unittest` bawaan Python. Test ini mencakup helper filter retrieval berdasarkan `material_id`, format riwayat chat, dan parsing respons JSON kuis.
+
+### Menjalankan semua test
+
+```bash
+python3 -m unittest discover -s tests
+```
+
+### Menjalankan semua test dengan detail nama test
+
+Perintah ini disarankan untuk dokumentasi atau screenshot hasil pengujian karena menampilkan nama test yang dijalankan satu per satu.
+
+```bash
+python3 -m unittest discover -s tests -v
+```
+
+Keterangan:
+
+- `discover -s tests` mencari dan menjalankan test pada folder `tests`.
+- `-v` menampilkan nama test secara detail.
+- Jika menggunakan virtual environment, aktifkan environment terlebih dahulu sebelum menjalankan test.
+
+---
+
 # 👨‍💻 Author
 
 Developed for **TutorKu AI Learning System**

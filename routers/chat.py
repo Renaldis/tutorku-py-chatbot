@@ -35,6 +35,17 @@ def format_chat_history(history):
     return "\n".join([f"{h['role']}: {h['content']}" for h in history])
 
 
+def build_material_filter(material_id: str):
+    return {
+        "must": [
+            {
+                "key": "metadata.material_id",
+                "match": {"value": material_id}
+            }
+        ]
+    }
+
+
 @router.post("/rag-chat")
 async def rag_chat(request: ChatRequest):
     try:
@@ -63,14 +74,7 @@ async def rag_chat(request: ChatRequest):
         retriever = vector_store.as_retriever(
             search_kwargs={
                 "k": 5,
-                "filter": {
-                    "must": [
-                        {
-                            "key": "metadata.material_id",
-                            "match": {"value": request.material_id}
-                        }
-                    ]
-                }
+                "filter": build_material_filter(request.material_id)
             }
         )
 
